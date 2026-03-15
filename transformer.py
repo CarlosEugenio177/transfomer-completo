@@ -23,10 +23,10 @@ def encoder_stack(X, num_layers=6):
 
 def decoder_block(Y, Z):
 
-    seq_len = Y.shape[1]
-    mask = look_ahead_mask(seq_len)
+    mask = look_ahead_mask(Y.shape[1])
 
-    Y_att = self_attention(Y)
+    Y_att = self_attention(Y, mask)
+
     Y_norm1 = add_and_norm(Y, Y_att)
 
     Y_cross = cross_attention(Z, Y_norm1)
@@ -79,8 +79,10 @@ def run_inference():
 
         Y = np.concatenate([Y, new_vec], axis=1)
 
-    print("Sequência gerada:")
-    print(" ".join(sequence))
+    print('Entrada simulada do encoder: Thinking Machines')
+    print('Sequência gerada:')
+    print(' '.join(sequence))
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     run_inference()
