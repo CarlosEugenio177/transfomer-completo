@@ -38,8 +38,16 @@ def decoder_block(Y, Z):
     return Y_out
 
 def output_projection(Y, vocab_size):
-    return Y
 
+    d_model = Y.shape[-1]
+
+    W = np.random.rand(d_model, vocab_size)
+
+    logits = Y @ W
+
+    probs = softmax(logits)
+
+    return probs
 def run_inference():
     pass
 
