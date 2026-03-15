@@ -1,6 +1,6 @@
 import numpy as np
 from attention import self_attention, add_and_norm, feed_forward, softmax
-from decoder import cross_attention, look_ahead_mask
+from decoder import look_ahead_mask, cross_attention
 
 def encoder_block(X):
 

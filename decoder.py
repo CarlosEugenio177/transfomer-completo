@@ -49,7 +49,7 @@ def autoregressive_loop():
 
         probs = generate_next_token(sequence, encoder_out)
 
-        token_index = np.argmax(probs)
+        token_index = np.argmax(probs[0, -1])
 
         next_token = vocab[token_index % len(vocab)]
 
