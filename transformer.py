@@ -49,7 +49,38 @@ def output_projection(Y, vocab_size):
 
     return probs
 def run_inference():
-    pass
+
+    vocab = ['<START>', 'Thinking', 'Machines', '<EOS>']
+
+    encoder_input = np.random.rand(1, 2, 64)
+
+    Z = encoder_stack(encoder_input)
+
+    sequence = ['<START>']
+
+    Y = np.random.rand(1, 1, 64)
+
+    while True:
+
+        Y_dec = decoder_block(Y, Z)
+
+        probs = output_projection(Y_dec, len(vocab))
+
+        token_index = np.argmax(probs[0, -1])
+
+        next_token = vocab[token_index]
+
+        sequence.append(next_token)
+
+        if next_token == '<EOS>':
+            break
+
+        new_vec = np.random.rand(1, 1, 64)
+
+        Y = np.concatenate([Y, new_vec], axis=1)
+
+    print("Sequência gerada:")
+    print(" ".join(sequence))
 
 if __name__ == "__main__":
     run_inference()
