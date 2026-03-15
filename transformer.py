@@ -50,7 +50,7 @@ def output_projection(Y, vocab_size):
     return probs
 def run_inference():
 
-    vocab = ['<START>', 'Thinking', 'Machines', '<EOS>']
+    vocab = ['<START>', 'Thinking', 'Machines', 'No', 'i', 'am', 'your', 'father', '.', '<EOS>']
 
     encoder_input = np.random.rand(1, 2, 64)
 
